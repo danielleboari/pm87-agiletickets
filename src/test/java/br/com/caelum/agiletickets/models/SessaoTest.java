@@ -6,45 +6,37 @@ import org.junit.Test;
 public class SessaoTest {
 
 	@Test
-	public void deveVender1ingressoSeHa2vagas() throws Exception {
+	public void deveReservarIngressosDisponiveis() throws Exception {
 		Sessao sessao = new Sessao();
-        sessao.setTotalIngressos(2);
+        Integer total_ingressos=2;
+		sessao.setTotalIngressos(total_ingressos);
 
-        Assert.assertTrue(sessao.podeReservar(1));
-	}
-	
-	@Test
-	public void deveVender5ingressosSeHa10vagas() throws Exception {
-		Sessao sessao = new Sessao();
-		sessao.setTotalIngressos(10);
-		
-		Assert.assertTrue(sessao.podeReservar(5));
+        Integer qtd_reserva=1;
+		Assert.assertTrue(sessao.podeReservar(qtd_reserva));
 	}
 
 	@Test
-	public void naoDeveVender3ingressoSeHa2vagas() throws Exception {
+	public void naoDeveReservarIngressosIndisponiveis() throws Exception {
 		Sessao sessao = new Sessao();
-		sessao.setTotalIngressos(2);
+		Integer total_ingressos=2;
+		sessao.setTotalIngressos(total_ingressos);
 
-		Assert.assertFalse(sessao.podeReservar(3));
+		Integer qtd_reserva=3;
+		Assert.assertFalse(sessao.podeReservar(qtd_reserva));
 	}
-	
-	@Test
-	public void deveVender2IngressosSeHa2Vagas() throws Exception {
-		Sessao sessao = new Sessao();
-		sessao.setTotalIngressos(2);
-
-		Assert.assertTrue(sessao.podeReservar(2));
-	}
-	
 
 	@Test
 	public void reservarIngressosDeveDiminuirONumeroDeIngressosDisponiveis() throws Exception {
 		Sessao sessao = new Sessao();
-		sessao.setTotalIngressos(5);
+		Integer total_ingressos=5;
+		sessao.setTotalIngressos(total_ingressos);
 
-		sessao.reserva(3);
-		Assert.assertEquals(2, sessao.getIngressosDisponiveis().intValue());
+		Integer ingressos_reservados = 3;
+		sessao.reserva(ingressos_reservados);
+		
+		
+		int resultado_esperado=2;
+		Assert.assertEquals(resultado_esperado, sessao.getIngressosDisponiveis().intValue());
 	}
 	
 }
