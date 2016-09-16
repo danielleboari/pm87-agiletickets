@@ -103,7 +103,7 @@ public class Espetaculo {
 		ArrayList<Sessao> sessoes = new ArrayList<Sessao>();
 		if (periodicidade.equals(Periodicidade.DIARIA)) {
 			int dias = Days.daysBetween(inicio, fim).getDays();
-			dias++;
+			//dias++;
 			for (int i = 1; i <= dias; i++) {
 				Sessao sessao = new Sessao();
 				sessao.setInicio(inicio.toDateTime(horario));
